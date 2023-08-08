@@ -12,8 +12,18 @@ from sklearn.linear_model import LogisticRegression
 # define functions
 def main(args):
     # TO DO: enable autologging
-   df = mlflow.autolog()
+   import mlflow
+from xgboost import XGBClassifier
+from sklearn.metrics import accuracy_score
 
+mlflow.autolog()
+
+model = XGBClassifier(use_label_encoder=False, eval_metric="logloss")
+model.fit(X_train, y_train, eval_set=[(X_test, y_test)], verbose=False)
+
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+    
     # read data
     df = get_csvs_df(args.training_data)
 
