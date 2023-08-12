@@ -11,8 +11,8 @@ jobs:
       uses: actions/checkout@main
     - name: Install az ml extension
       run: az extension add -n ml -y
-    - name: Darrell.MultiCloud@outlook.com
-      uses: Darrell.MultiCloud@outlook.com@v1
+    - name: Azure login
+      uses: Azurelogin@v1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS1}}
 
